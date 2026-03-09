@@ -1,69 +1,129 @@
-body{
-font-family: Arial;
-margin:0;
-background:#f4f4f4;
+/*--- BODY AND BASE STYLING ---*/
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    background: #f0f2f5;
+    color: #333;
 }
 
-header{
-background:#222;
-color:white;
-padding:20px;
-text-align:center;
+/* --- HEADER --- */
+header {
+    background: #0a3d62;
+    color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+    box-shadow: 0 6px 8px rgba(0,0,0,0.25);
 }
 
-nav ul{
-list-style:none;
-display:flex;
-justify-content:center;
-background:#444;
-padding:10px;
+/* --- NAVIGATION --- */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    background: #1e3799; 
+    padding: 15px 0;
+    margin: 0;
 }
 
-nav ul li{
-margin:0 15px;
+nav ul li {
+    margin: 0 25px; 
 }
 
-nav ul li a{
-color:white;
-text-decoration:none;
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 15px; 
+    transition: all 0.3s ease;
 }
 
-.content{
-padding:20px;
-max-width:900px;
-margin:auto;
+nav ul li a:hover {
+    background: #60a3bc;
+    color: #fff;
+    border-radius: 5px;
 }
 
-img{
-max-width:100%;
-height:auto;
+/* --- MAIN CONTENT --- */
+.content {
+    padding: 50px 30px;
+    max-width: 1000px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
 }
 
-.gallery{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
+/* --- IMAGES --- */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 25px;
 }
 
-.gallery img{
-width:30%;
+/* --- IMAGE GALLERY --- */
+.gallery {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 30px;
 }
 
-footer{
-text-align:center;
-padding:10px;
-background:#222;
-color:white;
+.gallery img {
+    width: 30%;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
 }
 
-@media (max-width:768px){
-    nav ul{
-    flex-direction:column;
-    align-items:center;
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+/* --- SECTION HEADINGS --- */
+section h2, section h3 {
+    color: #0a3d62;
+    margin-bottom: 20px;
+}
+
+section p, section ul {
+    line-height: 1.8; 
+    margin-bottom: 20px;
+}
+
+/* --- LIST --- */
+ul li {
+    margin-bottom: 10px;
+}
+/* --- FOOTER --- */
+footer {
+    text-align: center;
+    padding: 25px; 
+    background: #0a3d62;
+    color: #fff;
+    margin-top: 50px; 
+    box-shadow: 0 -6px 8px rgba(0,0,0,0.2);
+}
+
+/* --- RESPONSIVE DESIGN --- */
+@media (max-width: 768px) {
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
     }
 
-    .gallery img{
-    width:100%;
+    nav ul li {
+        margin: 10px 0;
     }
 
+    .gallery img {
+        width: 100%;
+    }
+
+    .content {
+        padding: 30px 20px;
+        margin: 20px auto;
+    }
 }
