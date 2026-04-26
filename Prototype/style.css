@@ -1,12 +1,16 @@
-/*--- BODY AND BASE STYLING ---*/
+/* =========================
+   BODY AND BASE STYLING
+========================= */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     background: #f0f2f5;
     color: #333;
 }
 
-/* --- HEADER --- */
+/* =========================
+   HEADER
+========================= */
 header {
     background: #0a3d62;
     color: #fff;
@@ -15,25 +19,28 @@ header {
     box-shadow: 0 6px 8px rgba(0,0,0,0.25);
 }
 
-/* --- NAVIGATION --- */
+/* =========================
+   NAVIGATION
+   (IMPORTANT: assumes ul structure)
+========================= */
 nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
-    background: #1e3799; 
+    background: #1e3799;
     padding: 15px 0;
     margin: 0;
 }
 
 nav ul li {
-    margin: 0 25px; 
+    margin: 0 25px;
 }
 
 nav ul li a {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
-    padding: 8px 15px; 
+    padding: 8px 15px;
     transition: all 0.3s ease;
 }
 
@@ -43,7 +50,9 @@ nav ul li a:hover {
     border-radius: 5px;
 }
 
-/* --- MAIN CONTENT --- */
+/* =========================
+   MAIN CONTENT BOX
+========================= */
 .content {
     padding: 50px 30px;
     max-width: 1000px;
@@ -53,7 +62,9 @@ nav ul li a:hover {
     box-shadow: 0 6px 16px rgba(0,0,0,0.15);
 }
 
-/* --- IMAGES --- */
+/* =========================
+   IMAGES
+========================= */
 img {
     max-width: 100%;
     height: auto;
@@ -61,7 +72,9 @@ img {
     margin-bottom: 25px;
 }
 
-/* --- IMAGE GALLERY --- */
+/* =========================
+   IMAGE GALLERY
+========================= */
 .gallery {
     display: flex;
     gap: 20px;
@@ -81,33 +94,43 @@ img {
     transform: scale(1.05);
 }
 
-/* --- SECTION HEADINGS --- */
-section h2, section h3 {
+/* =========================
+   SECTION HEADINGS
+========================= */
+section h2,
+section h3 {
     color: #0a3d62;
     margin-bottom: 20px;
 }
 
-section p, section ul {
-    line-height: 1.8; 
+/* =========================
+   PARAGRAPHS + LISTS
+========================= */
+section p,
+section ul {
+    line-height: 1.8;
     margin-bottom: 20px;
 }
 
-/* --- LIST --- */
 ul li {
     margin-bottom: 10px;
 }
 
-/* --- FOOTER --- */
+/* =========================
+   FOOTER
+========================= */
 footer {
     text-align: center;
-    padding: 25px; 
+    padding: 25px;
     background: #0a3d62;
     color: #fff;
-    margin-top: 50px; 
+    margin-top: 50px;
     box-shadow: 0 -6px 8px rgba(0,0,0,0.2);
 }
 
-/* --- RESPONSIVE DESIGN --- */
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
 @media (max-width: 768px) {
 
     nav ul {

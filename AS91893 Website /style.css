@@ -1,0 +1,216 @@
+/* =========================
+RESET
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* =========================
+BODY (LEFT-ALIGNED TOURISM STYLE)
+========================= */
+body {
+    font-family: Arial, sans-serif;
+    background: white;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* =========================
+MAIN PAGE WRAPPER (FIX LEFT EDGE ISSUE)
+========================= */
+.container {
+    width: 92%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 10px;
+}
+
+/* =========================
+HEADER (TOURISM STYLE BAR)
+========================= */
+.main-header {
+    background: white;
+    border-bottom: 4px solid green;
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    padding: 15px 30px;
+}
+
+.logo-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    width: 65px;
+    height: 65px;
+}
+
+/* =========================
+NAVIGATION
+========================= */
+.navbar {
+    display: flex;
+    gap: 25px;
+    padding: 15px 30px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: green;
+    font-weight: bold;
+}
+
+.navbar a:hover {
+    color: red;
+}
+
+/* =========================
+HERO SECTION
+========================= */
+.hero {
+    background: #003366;
+    color: white;
+    padding: 60px 30px;
+}
+
+/* =========================
+SLIDER FIX (SIZE ISSUE)
+========================= */
+#slider {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+/* =========================
+HEADINGS + TEXT COLOURS (YOUR REQUIREMENT)
+========================= */
+h1 {
+    color: white;
+}
+
+h2 {
+    color: red !important;
+    margin-bottom: 10px;
+}
+
+h3 {
+    color: red;
+}
+
+/* paragraphs = orange */
+p {
+    color: orange;
+    margin-bottom: 10px;
+}
+
+/* list items = orange */
+ul li {
+    color: orange;
+    margin-left: 20px;
+}
+
+/* =========================
+CARD SYSTEM (FIX STACKING + ALIGNMENT)
+========================= */
+.card {
+    background: white;
+    border-left: 6px solid red;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+
+    width: 100%;
+}
+
+/* =========================
+GRID SYSTEM (FIX RECIPES STACKING ISSUE)
+========================= */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    align-items: stretch;
+}
+
+/* make all recipe cards equal height */
+.grid .card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* =========================
+FIX PAGE 2 "BAR STYLE SECTIONS"
+(THIS FIXES PURPOSE / VISION / MISSION STACKING LOOK)
+========================= */
+.container .card {
+    margin-left: 0;
+}
+
+/* =========================
+CONTACT FORM FIX
+========================= */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input, textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background: green;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: red;
+}
+
+/* =========================
+SECTION SPACING FIX
+========================= */
+section {
+    margin-bottom: 40px;
+}
+
+/* =========================
+FOOTER
+========================= */
+footer {
+    background: #003366;
+    color: white;
+    text-align: left;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+/* =========================
+MOBILE FIX
+========================= */
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
