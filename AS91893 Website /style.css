@@ -12,7 +12,7 @@ html {
 }
 
 /* =========================
-BODY (LEFT-ALIGNED TOURISM STYLE)
+BODY
 ========================= */
 body {
     font-family: Arial, sans-serif;
@@ -22,17 +22,17 @@ body {
 }
 
 /* =========================
-MAIN PAGE WRAPPER (FIX LEFT EDGE ISSUE)
+PAGE LAYOUT (STOPS LEFT EDGE ISSUE)
 ========================= */
 .container {
     width: 92%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px 10px;
+    padding: 20px 15px;
 }
 
 /* =========================
-HEADER (TOURISM STYLE BAR)
+HEADER (TOURISM STYLE)
 ========================= */
 .main-header {
     background: white;
@@ -59,22 +59,48 @@ HEADER (TOURISM STYLE BAR)
 /* =========================
 NAVIGATION
 ========================= */
+/* =========================
+NAVIGATION (IMPROVED ACCESSIBILITY + SPACING)
+========================= */
 .navbar {
     display: flex;
-    gap: 25px;
-    padding: 15px 30px;
+    justify-content: space-around;  /* spreads items evenly */
+    align-items: center;
+    padding: 18px 40px;
+    background: white;
+    border-top: 2px solid green;
+    border-bottom: 2px solid green;
 }
 
+/* nav links */
 .navbar a {
     text-decoration: none;
     color: green;
-    font-weight: bold;
+    font-weight: 700;
+    font-size: 18px; /* BIGGER TEXT */
+    letter-spacing: 0.5px;
+    padding: 10px 15px;
+    transition: 0.3s ease;
+    border-radius: 6px;
 }
 
+/* hover effect */
 .navbar a:hover {
-    color: red;
+    background: red;
+    color: white;
 }
 
+/* active page highlight */
+.navbar a.active {
+    background: green;
+    color: white;
+}
+
+/* keyboard accessibility (important for grades) */
+.navbar a:focus {
+    outline: 3px solid red;
+    outline-offset: 3px;
+}
 /* =========================
 HERO SECTION
 ========================= */
@@ -85,7 +111,7 @@ HERO SECTION
 }
 
 /* =========================
-SLIDER FIX (SIZE ISSUE)
+IMAGE SLIDER FIX
 ========================= */
 #slider {
     width: 100%;
@@ -96,14 +122,14 @@ SLIDER FIX (SIZE ISSUE)
 }
 
 /* =========================
-HEADINGS + TEXT COLOURS (YOUR REQUIREMENT)
+TEXT COLOURS (YOUR REQUIREMENT)
 ========================= */
 h1 {
     color: white;
 }
 
 h2 {
-    color: red !important;
+    color: red;
     margin-bottom: 10px;
 }
 
@@ -111,20 +137,18 @@ h3 {
     color: red;
 }
 
-/* paragraphs = orange */
 p {
     color: orange;
     margin-bottom: 10px;
 }
 
-/* list items = orange */
-ul li {
+ul li, ol li {
     color: orange;
     margin-left: 20px;
 }
 
 /* =========================
-CARD SYSTEM (FIX STACKING + ALIGNMENT)
+CARDS (CONTENT BOXES)
 ========================= */
 .card {
     background: white;
@@ -132,12 +156,10 @@ CARD SYSTEM (FIX STACKING + ALIGNMENT)
     padding: 20px;
     margin-bottom: 20px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-
-    width: 100%;
 }
 
 /* =========================
-GRID SYSTEM (FIX RECIPES STACKING ISSUE)
+🔥 FIXED RECIPE GRID (2 COLUMNS × 4 ROWS)
 ========================= */
 .grid {
     display: grid;
@@ -146,23 +168,25 @@ GRID SYSTEM (FIX RECIPES STACKING ISSUE)
     align-items: stretch;
 }
 
-/* make all recipe cards equal height */
-.grid .card {
+/* ensures equal recipe boxes */
+.recipe-card {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     height: 100%;
 }
 
-/* =========================
-FIX PAGE 2 "BAR STYLE SECTIONS"
-(THIS FIXES PURPOSE / VISION / MISSION STACKING LOOK)
-========================= */
-.container .card {
-    margin-left: 0;
+/* recipe images */
+.recipe-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
 
 /* =========================
-CONTACT FORM FIX
+FORM FIX (CONTACT PAGE WORKING)
 ========================= */
 form {
     display: flex;
@@ -189,7 +213,7 @@ button:hover {
 }
 
 /* =========================
-SECTION SPACING FIX
+SECTION SPACING
 ========================= */
 section {
     margin-bottom: 40px;
@@ -203,14 +227,17 @@ footer {
     color: white;
     text-align: left;
     padding: 20px;
-    margin-top: 40px;
 }
 
 /* =========================
-MOBILE FIX
+MOBILE RESPONSIVE FIX
 ========================= */
 @media (max-width: 768px) {
     .grid {
         grid-template-columns: 1fr;
+    }
+
+    .navbar {
+        flex-direction: column;
     }
 }

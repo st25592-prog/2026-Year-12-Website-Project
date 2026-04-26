@@ -30,9 +30,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (slider) {
         const images = [
-            "Images/Gemini_Generated_Image_gcrg3cgcrg3cgcrg.png",
-            "images/food1.jpg",
-            "images/food2.jpg"
+            "images/Gemini_Generated_Image_r5rx46r5rx46r5rx.png",
+            "images/Gemini_Generated_Image_r5rx46r5rx46r5rx-4.png",
+            "images/Gemini_Generated_Image_r5rx46r5rx46r5rx-3.png"
         ];
 
         let index = 0;
