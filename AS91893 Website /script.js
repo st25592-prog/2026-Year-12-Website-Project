@@ -32,9 +32,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         //List of slider images
         const images = [
-            "images/Gemini_Generated_Image_r5rx46r5rx46r5rx.png",
-            "images/Gemini_Generated_Image_r5rx46r5rx46r5rx-4.png",
-            "images/Gemini_Generated_Image_r5rx46r5rx46r5rx-3.png"
+            "images/sliderimage1-family.png",
+            "images/sliderimage2-otaika.png",
+            "images/sliderimage3-5plates.png"
         ];
 
         let index = 0;

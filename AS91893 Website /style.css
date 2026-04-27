@@ -1,6 +1,4 @@
-/* =========================
-RESET
-========================= */
+/* RESET */
 * {
     margin: 0;
     padding: 0;
@@ -11,9 +9,7 @@ html {
     scroll-behavior: smooth;
 }
 
-/* =========================
-BODY
-========================= */
+/* BODY */
 body {
     font-family: Arial, sans-serif;
     background: white;
@@ -21,9 +17,7 @@ body {
     line-height: 1.6;
 }
 
-/* =========================
-PAGE LAYOUT (STOPS LEFT EDGE ISSUE)
-========================= */
+/* PAGE LAYOUT */
 .container {
     width: 92%;
     max-width: 1200px;
@@ -31,9 +25,7 @@ PAGE LAYOUT (STOPS LEFT EDGE ISSUE)
     padding: 20px 15px;
 }
 
-/* =========================
-HEADER (TOURISM STYLE)
-========================= */
+/* HEADER (TOURISM STYLE) */
 .main-header {
     background: white;
     border-bottom: 4px solid green;
@@ -56,12 +48,8 @@ HEADER (TOURISM STYLE)
     height: 65px;
 }
 
-/* =========================
-NAVIGATION
-========================= */
-/* =========================
-NAVIGATION (IMPROVED ACCESSIBILITY + SPACING)
-========================= */
+/* NAVIGATION */
+/* NAVIGATION (IMPROVED ACCESSIBILITY + SPACING) */
 .navbar {
     display: flex;
     justify-content: space-around;  /* spreads items evenly */
@@ -96,23 +84,19 @@ NAVIGATION (IMPROVED ACCESSIBILITY + SPACING)
     color: white;
 }
 
-/* keyboard accessibility (important for grades) */
+/* keyboard accessibility */
 .navbar a:focus {
     outline: 3px solid red;
     outline-offset: 3px;
 }
-/* =========================
-HERO SECTION
-========================= */
+/* HERO SECTION */
 .hero {
     background: #003366;
     color: white;
     padding: 60px 30px;
 }
 
-/* =========================
-IMAGE SLIDER FIX
-========================= */
+/* IMAGE SLIDER FIX */
 #slider {
     width: 100%;
     height: 450px;
@@ -121,9 +105,7 @@ IMAGE SLIDER FIX
     margin-top: 20px;
 }
 
-/* =========================
-TEXT COLOURS (YOUR REQUIREMENT)
-========================= */
+/* TEXT COLOURS (YOUR REQUIREMENT) */
 h1 {
     color: white;
 }
@@ -147,9 +129,7 @@ ul li, ol li {
     margin-left: 20px;
 }
 
-/* =========================
-CARDS (CONTENT BOXES)
-========================= */
+/* CARDS (CONTENT BOXES) */
 .card {
     background: white;
     border-left: 6px solid red;
@@ -158,9 +138,7 @@ CARDS (CONTENT BOXES)
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-/* =========================
-🔥 FIXED RECIPE GRID (2 COLUMNS × 4 ROWS)
-========================= */
+/* FIXED RECIPE GRID (2 COLUMNS × 4 ROWS) */
 .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -168,7 +146,7 @@ CARDS (CONTENT BOXES)
     align-items: stretch;
 }
 
-/* ensures equal recipe boxes */
+/* equal recipe boxes */
 .recipe-card {
     display: flex;
     flex-direction: column;
@@ -185,9 +163,7 @@ CARDS (CONTENT BOXES)
     margin-bottom: 10px;
 }
 
-/* =========================
-FORM FIX (CONTACT PAGE WORKING)
-========================= */
+/* FORM FIX (CONTACT PAGE WORKING) */
 form {
     display: flex;
     flex-direction: column;
@@ -212,16 +188,12 @@ button:hover {
     background: red;
 }
 
-/* =========================
-SECTION SPACING
-========================= */
+/* SECTION SPACING */
 section {
     margin-bottom: 40px;
 }
 
-/* =========================
-FOOTER
-========================= */
+/* FOOTER */
 footer {
     background: #003366;
     color: white;
@@ -229,9 +201,7 @@ footer {
     padding: 20px;
 }
 
-/* =========================
-MOBILE RESPONSIVE FIX
-========================= */
+/* MOBILE RESPONSIVE FIX */
 @media (max-width: 768px) {
     .grid {
         grid-template-columns: 1fr;
