@@ -30,12 +30,13 @@
     <p>Have questions or feedback? We'd love to hear from you! Ask questions, share feedback, or connect with us.</p>
 </section>
 
-<section class="container grid">
+<section class="container grid"> <!-- Created 2 column layout for the contact page using CSS-->
 
     <div class="card">
         <h2>Send a Message!</h2>
+        <form id="contactForm"> <!-- JavaScript targets this ID-->
 
-        <form id="contactForm">
+            <!-- Input fields-->
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" placeholder="Enter your names" required>
 
@@ -51,7 +52,8 @@
 
     <div class="card">
         <h2>Contact Information</h2>
-
+        
+        <!-- Contact Information to get in reach if needed-->
         <p><strong>Email:</strong> pacificfusion@email.com</p>
         <p><strong>Phone:</strong> 021 456 7890</p>
         <p><strong>Address:</strong> 123 Island Way, Auckland, New Zealand</p>
