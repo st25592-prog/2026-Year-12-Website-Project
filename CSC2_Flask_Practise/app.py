@@ -14,7 +14,7 @@ def add_to_cart():
 
     if flower not in flowers:
         flash('Invalid flower selected.')
-        return redirect(url_for('home'))
+        return redirect(url_for('index1.html'))
     
     if flower in cart:
         cart[flower] += quantity # add existing quantity
@@ -27,7 +27,7 @@ def add_to_cart():
     session['cart'] = cart # update session
     session.modified = True # force flask to save it
     flash(f'{quantity} {flower}(s) added to cart.')
-    return redirect(url_for('home')) # go back to home page
+    return redirect(url_for('checkout')) # go back to home page
 
     return render_template('index1.html')
 
