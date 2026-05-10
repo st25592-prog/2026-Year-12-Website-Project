@@ -4,6 +4,10 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
+@app.route('/add_to_cart', methods=['POST'])
+def add_to_cart():
+    return render_template('index1.html')
+
 def load_data():
     with open('data/flowers.json') as file:
         flowers = json.load(file)
@@ -12,6 +16,8 @@ def load_data():
             addons = json.load(file)
 
     return flowers, addons
+
+
 
 @app.route('/')
 def index():
@@ -29,10 +35,6 @@ def checkout():
 @app.route('/orders')
 def order_history():
     return render_template('order_history.html')
-
-@app.route('/add_to_cart', methods=['POST'])
-def add_to_cart():
-    return render_template('index1.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
