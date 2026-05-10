@@ -6,13 +6,17 @@ app.secret_key = 'your_secret_key'
 
 def load_data():
     with open('data/flowers.json') as file:
-        data = json.load(file)
-    return data
+        flowers = json.load(file)
+
+        with open('data/addons.json') as file:
+            addons = json.load(file)
+
+    return flowers, addons
 
 @app.route('/')
 def index():
-    flowers = load_data()
-    return render_template('index.html', flowers=flowers)
+    flowers, addons = load_data()
+    return render_template('index.html', flowers=flowers, addons=addons)
 
 @app.route('/about')
 def about():
@@ -25,6 +29,10 @@ def checkout():
 @app.route('/orders')
 def order_history():
     return render_template('order_history.html')
+
+@app.route('/add_to_cart', methods=['POST'])
+def add_to_cart():
+    return render_template('index1.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Website</title>
+</head>
+<body>
+
+<form action="{{ url_for('add_to_cart') }}" method="post">
+   <fieldset>
+    <legend for="flower">Select Flowers</legend>
+    <select name="flower" id="flower">
+    {% for flower, details in flowers.items() %}
+        <option value="{{ flower }}">{{ flower }} - ${{ details['price'] }}</option>
+    {% endfor %}
+   </select>
+   <label for="quantity">Quantity</label>
+   <input type="number" name="quantity" min="1" value="1">
+   <button type="submit">Add to Cart</button>
+   </fieldset>
+</form>
+
+</body>
+</html>

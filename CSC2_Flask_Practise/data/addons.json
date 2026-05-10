@@ -1,0 +1,14 @@
+{
+    "Ribbons": {
+        "price": 2
+    },
+    "Specialty Wrapping Paper": {
+        "price": 5
+    },
+    "Personalized Note": {
+        "price": 3
+    },
+    "Delivery": {
+        "price": 10
+    }
+}
