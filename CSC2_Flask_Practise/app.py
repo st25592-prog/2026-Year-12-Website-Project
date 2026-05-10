@@ -4,8 +4,31 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
+# Add selected flower to the shopping cart
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
+    flower = request.form['flower'] #get selcted flower name
+    quantity = int(request.form['quantity']) #convert quantity to a number
+    flowers, addons = load_data() #get flower data from file, ignore addons data for now
+    cart = session.get('cart', {}) #get cart from session or start fresh
+
+    if flower not in flowers:
+        flash('Invalid flower selected.')
+        return redirect(url_for('home'))
+    
+    if flower in cart:
+        cart[flower] += quantity # add existing quantity
+    else:
+            cart[flower] = {
+                 'price': flowers[flower]['price'],
+                 'quantity': quantity
+            }
+
+    session['cart'] = cart # update session
+    session.modified = True # force flask to save it
+    flash(f'{quantity} {flower}(s) added to cart.')
+    return redirect(url_for('home')) # go back to home page
+
     return render_template('index1.html')
 
 def load_data():
