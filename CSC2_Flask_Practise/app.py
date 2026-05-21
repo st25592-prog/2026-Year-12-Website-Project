@@ -29,7 +29,7 @@ def add_to_cart():
     session['cart'] = cart # update session
     session.modified = True # force flask to save it
     flash(f'{quantity} {flower}(s) added to cart.')
-    return redirect(url_for('index1.html')) # go back to home page
+    return redirect(url_for('index.html')) # go back to home page
 
     return render_template('index1.html')
 
