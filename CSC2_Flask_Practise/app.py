@@ -16,7 +16,7 @@ def add_to_cart():
 
     if flower not in flowers:
         flash('Invalid flower selected.')
-        return redirect(url_for('index1.html'))
+        return redirect(url_for('index.html'))
     
     if flower in cart:
         cart[flower] += quantity # add existing quantity
@@ -29,7 +29,7 @@ def add_to_cart():
     session['cart'] = cart # update session
     session.modified = True # force flask to save it
     flash(f'{quantity} {flower}(s) added to cart.')
-    return redirect(url_for('index.html')) # go back to home page
+    return redirect(url_for('index', flowers=flowers, addons=addons)) # go back to home page
 
     return render_template('index1.html')
 
@@ -47,7 +47,8 @@ def load_data():
 @app.route('/')
 def index():
     flowers, addons = load_data()
-    return render_template('index.html', flowers=flowers, addons=addons)
+    cart = session.get('cart', {})
+    return render_template('index.html', flowers=flowers, addons=addons, cart=cart)
 
 @app.route('/about')
 def about():
