@@ -19,7 +19,7 @@ def add_to_cart():
         return redirect(url_for('index.html'))
     
     if flower in cart:
-        cart[flower] += quantity # add existing quantity
+        cart[flower]['quantity'] += quantity # add existing quantity
     else:
             cart[flower] = {
                  'price': flowers[flower]['price'],
@@ -31,7 +31,7 @@ def add_to_cart():
     flash(f'{quantity} {flower}(s) added to cart.')
     return redirect(url_for('index', flowers=flowers, addons=addons)) # go back to home page
 
-    return render_template('index1.html')
+    return render_template('index1.html' , flowers=flowers, addons=addons, cart=cart)
 
 def load_data():
     with open('data/flowers.json') as file:
@@ -42,13 +42,17 @@ def load_data():
 
     return flowers, addons
 
-
-
 @app.route('/')
 def index():
     flowers, addons = load_data()
     cart = session.get('cart', {})
-    return render_template('index.html', flowers=flowers, addons=addons, cart=cart)
+    total = calculate_total(cart)
+    return render_template('index.html', flowers=flowers, addons=addons, cart=cart, total=total)
+
+
+def calculate_total(cart):
+    total = sum(item['price'] * item['quantity'] for item in cart.values())
+    return total
 
 @app.route('/about')
 def about():
