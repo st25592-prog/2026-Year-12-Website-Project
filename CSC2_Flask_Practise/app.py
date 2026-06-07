@@ -73,11 +73,7 @@ def remove_from_cart(item):
         flash(f"{item} removed from cart.")
     else:
         flash("Item not found in cart.")
-    return redirect(url_for('index', flowers=flowers, addons=addons))
-
-flowers, addons = load_data()
-cart = session.get('cart', {})
-return render_template('index.html', flowers=flowers, addons=addons, cart=cart)
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(debug=True)
