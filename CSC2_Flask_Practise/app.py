@@ -69,6 +69,7 @@ def order_history():
 @app.route ("/remove_from_cart/<item>")
 def remove_from_cart(item):
     cart = session.get('cart', {})
+    flower =  flower.capitalize() # Ensure the item name is capitalized to match the cart keys
 
     if item in cart:
         del cart[item]
