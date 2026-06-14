@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cart</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-<h1>Item Added to Cart Successfully!</h1>
+<title>{% block title %}Invoice - Online Flower Shop{% endblock %}</title>
 
-<a href="/">Go Back</a>
-
-</body>
-</html>
+{% block content %}
+<h1>Invoice</h1>
+<p>This page will show the customer invoice after checkout.</p>
+{% endblock %}

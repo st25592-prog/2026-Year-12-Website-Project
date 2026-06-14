@@ -16,7 +16,7 @@ def add_to_cart():
 
     if flower not in flowers:
         flash('Invalid flower selected.')
-        return redirect(url_for('index.html'))
+        return redirect(url_for('index2.html'))
     
     if flower in cart:
         cart[flower]['quantity'] += quantity # add existing quantity
@@ -29,9 +29,9 @@ def add_to_cart():
     session['cart'] = cart # update session
     session.modified = True # force flask to save it
     flash(f'{quantity} {flower}(s) added to cart.')
-    return redirect(url_for('index', flowers=flowers, addons=addons)) # go back to home page
+    return redirect(url_for('index2', flowers=flowers, addons=addons)) # go back to home page
 
-    return render_template('index1.html' , flowers=flowers, addons=addons, cart=cart)
+    return render_template('index2.html' , flowers=flowers, addons=addons, cart=cart)
 
 def load_data():
     with open('data/flowers.json') as file:
@@ -43,11 +43,11 @@ def load_data():
     return flowers, addons
 
 @app.route('/')
-def index():
+def index2():
     flowers, addons = load_data()
     cart = session.get('cart', {})
     total = calculate_total(cart)
-    return render_template('index.html', flowers=flowers, addons=addons, cart=cart, total=total)
+    return render_template('index2.html', flowers=flowers, addons=addons, cart=cart, total=total)
 
 
 def calculate_total(cart):
@@ -69,8 +69,7 @@ def order_history():
 @app.route ("/remove_from_cart/<item>")
 def remove_from_cart(item):
     cart = session.get('cart', {})
-    flower =  flower.capitalize() # Ensure the item name is capitalized to match the cart keys
-
+    
     if item in cart:
         del cart[item]
         session['cart'] = cart
@@ -78,7 +77,7 @@ def remove_from_cart(item):
         flash(f"Removed all {item} from the cart.")
     else:
         flash("Item not found in cart.")
-    return redirect(url_for('index'))
+    return redirect(url_for('index2'))
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,0 +1,97 @@
+/* General page styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff8f2;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigation bar */
+nav {
+    background-color: #d94f70;
+    padding: 15px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #ffe5ec;
+}
+
+/* Headings */
+h1 {
+    color: #b23a48;
+    text-align: center;
+}
+
+h2 {
+    color: #b23a48;
+}
+
+/* Main content */
+main {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Forms */
+fieldset {
+    border: 2px solid #d94f70;
+    border-radius: 10px;
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+label, select, input {
+    margin: 10px 0;
+}
+
+input, select {
+    padding: 8px;
+}
+
+/* Buttons */
+button {
+    background-color: #d94f70;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #b23a48;
+}
+
+/* Cart items */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: white;
+    border: 1px solid #ddd;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+/* Flash messages */
+.flash {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
