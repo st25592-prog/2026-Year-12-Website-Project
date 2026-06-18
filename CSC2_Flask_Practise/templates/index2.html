@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask Website</title>
-</head>
+{% extends "base.html" %}
+
+</title>{% block title %}Home - Online Flower Shop{% endblock %}</title>
+
+{% block content %}
+
 <body>
 
     <form action="{{ url_for('add_to_cart') }}" method="post">
@@ -53,4 +52,4 @@
 <h4>Total: ${{ '%.2f' % total}}</h4>
 
 </body>
-</html>
+{% endblock %}

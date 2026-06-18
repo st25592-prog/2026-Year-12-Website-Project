@@ -43,11 +43,11 @@ def load_data():
     return flowers, addons
 
 @app.route('/')
-def index2():
+def index():
     flowers, addons = load_data()
     cart = session.get('cart', {})
     total = calculate_total(cart)
-    return render_template('index2.html', flowers=flowers, addons=addons, cart=cart, total=total)
+    return render_template('index.html', flowers=flowers, addons=addons, cart=cart, total=total)
 
 
 def calculate_total(cart):
@@ -58,8 +58,8 @@ def calculate_total(cart):
 def about():
     return render_template('about.html')
 
-@app.route('/checkout')
-def checkout():
+@app.route('/invoice')
+def invoice():
     return render_template('invoice.html')
 
 @app.route('/orders')
