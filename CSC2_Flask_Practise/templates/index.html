@@ -51,5 +51,17 @@
 {% endif %}
 <h4>Total: ${{ '%.2f' % total}}</h4>
 
+<form action="{{ url_for('select_addon') }}" method="post">
+    <fieldset>
+        <legend for="addon">Select Add-on</legend>
+        <label>
+            <input type="checkbox" name="addon" value="{{ addon }}">
+            {{ addon }} - ${{ addons[addon]['price'] }}
+        </label><br>
+        {% endfor}
+        <button type="submit">Add to Cart</button>
+    </fieldset>
+</form>
+
 </body>
 {% endblock %}

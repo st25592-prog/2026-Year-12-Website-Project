@@ -79,5 +79,25 @@ def remove_from_cart(item):
         flash("Item not found in cart.")
     return redirect(url_for('index2'))
 
+    session['cart'] = cart
+    session.modified = True
+    flash(f'Add-on added to cart.')
+    return redirect(url_for('index2'))
+
+@app.route ('/select_addon', methods=['POST'])
+def select_addon():
+    selected_addon = {}
+    _, addons = load_data()
+
+    selected_keys = request.form.getlist('addons') # get list of selected addons from form
+   
+for addon_key in selected_keys:
+    if addon_key in addons:
+        selected_addons[addons]= float (addons [addons] ['price'])
+
+    session['selected_addons'] = selected_addons
+    session.modified = True
+    return redirect(url_for('addons.json'))
+
 if __name__ == '__main__':
     app.run(debug=True)
