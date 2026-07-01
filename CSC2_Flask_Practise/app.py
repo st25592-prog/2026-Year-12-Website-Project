@@ -86,14 +86,14 @@ def remove_from_cart(item):
 
 @app.route ('/select_addon', methods=['POST'])
 def select_addon():
-    selected_addon = {}
+    selected_addons = {}
     _, addons = load_data()
 
     selected_keys = request.form.getlist('addons') # get list of selected addons from form
    
-for addon_key in selected_keys:
-    if addon_key in addons:
-        selected_addons[addons]= float (addons [addons] ['price'])
+    for addon_key in selected_keys:
+        if addon_key in addons:
+            selected_addons[addons]= float (addons [addons] ['price'])
 
     session['selected_addons'] = selected_addons
     session.modified = True

@@ -54,11 +54,12 @@
 <form action="{{ url_for('select_addon') }}" method="post">
     <fieldset>
         <legend for="addon">Select Add-on</legend>
+        {% for addon, data in addons.items() %}
         <label>
-            <input type="checkbox" name="addon" value="{{ addon }}">
-            {{ addon }} - ${{ addons[addon]['price'] }}
+            <input type="checkbox" name="addons" value="{{ addon }}">
+            {{ addon }} - (${{ data['price'] }})
         </label><br>
-        {% endfor}
+        {% endfor %}
         <button type="submit">Add to Cart</button>
     </fieldset>
 </form>
