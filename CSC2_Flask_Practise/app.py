@@ -40,14 +40,15 @@ def load_data():
         with open('data/addons.json') as file:
             addons = json.load(file)
 
-    return flowers, addons
+    return flowers, addons  
 
 @app.route('/')
-def index():
-    flowers, addons = load_data()
+def home():
     cart = session.get('cart', {})
+    selected_addons = session.get('selected_addons', {})
+    flowers, addons = load_data()
     total = calculate_total(cart)
-    return render_template('index.html', flowers=flowers, addons=addons, cart=cart, total=total)
+    return render_template('index.html', flowers=flowers, addons=addons, cart=cart, selected_addons=selected_addons, total=total)
 
 
 def calculate_total(cart):
