@@ -29,7 +29,7 @@ def add_to_cart():
     session['cart'] = cart # update session
     session.modified = True # force flask to save it
     flash(f'{quantity} {flower}(s) added to cart.')
-    return redirect(url_for('index2', flowers=flowers, addons=addons)) # go back to home page
+    return redirect(url_for('index', flowers=flowers, addons=addons)) # go back to home page
 
     return render_template('index2.html' , flowers=flowers, addons=addons, cart=cart)
 
@@ -43,7 +43,7 @@ def load_data():
     return flowers, addons  
 
 @app.route('/')
-def home():
+def index():
     cart = session.get('cart', {})
     selected_addons = session.get('selected_addons', {})
     flowers, addons = load_data()
@@ -78,7 +78,7 @@ def remove_from_cart(item):
         flash(f"Removed all {item} from the cart.")
     else:
         flash("Item not found in cart.")
-    return redirect(url_for('index2'))
+    return redirect(url_for('index'))
 
     session['cart'] = cart
     session.modified = True
