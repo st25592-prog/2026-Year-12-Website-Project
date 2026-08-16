@@ -92,13 +92,13 @@ def select_addon():
 
     selected_keys = request.form.getlist('addons') # get list of selected addons from form
    
-    for addon_key in selected_keys:
-        if addon_key in addons:
-            selected_addons[addons]= float (addons [addons] ['price'])
+    for addon in selected_keys:
+        if addon in addons:
+            selected_addons[addon] = float (addons [addon] ['price'])
 
     session['selected_addons'] = selected_addons
     session.modified = True
-    return redirect(url_for('addons.json'))
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+ app.run(debug=True)
