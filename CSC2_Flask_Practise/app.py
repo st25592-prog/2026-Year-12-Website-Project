@@ -97,6 +97,7 @@ def select_addon():
             selected_addons[addon] = float (addons [addon] ['price'])
 
     session['selected_addons'] = selected_addons
+    print(session)
     session.modified = True
     return redirect(url_for('index'))
 
