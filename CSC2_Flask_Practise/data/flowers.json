@@ -18,5 +18,9 @@
     "Orchid": {
         "price": 10,
         "stock": 20
+    },
+    "Peonies": {
+        "price": 10,
+        "stock": 25
     }
 }
