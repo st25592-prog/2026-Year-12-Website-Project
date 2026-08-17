@@ -51,8 +51,9 @@ def index():
     return render_template('index.html', flowers=flowers, addons=addons, cart=cart, selected_addons=selected_addons, total=total)
 
 
-def calculate_total(cart):
+def calculate_total(cart, selected_addons):
     total = sum(item['price'] * item['quantity'] for item in cart.values())
+    total += sum(price for price in selected_addons())
     return total
 
 @app.route('/about')
