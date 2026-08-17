@@ -10,5 +10,8 @@
     },
     "Delivery": {
         "price": 10
+    },
+    "Chocolate Box": {
+        "price": 8
     }
 }
