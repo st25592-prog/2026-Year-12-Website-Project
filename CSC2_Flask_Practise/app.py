@@ -6,6 +6,14 @@ app = Flask(__name__)
 
 app.secret_key = 'your_secret_key'
 
+@app.route('/')
+def index():
+    cart = session.get('cart', {})
+    selected_addons = session.get('selected_addons', {})
+    flowers, addons = load_data()
+    total = calculate_total(cart, selected_addons)
+    return render_template('index.html', flowers=flowers, addons=addons, cart=cart, selected_addons=selected_addons, total=total)
+
 # Add selected flower to the shopping cart
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
@@ -42,18 +50,12 @@ def load_data():
 
     return flowers, addons  
 
-@app.route('/')
-def index():
-    cart = session.get('cart', {})
-    selected_addons = session.get('selected_addons', {})
-    flowers, addons = load_data()
-    total = calculate_total(cart, selected_addons)
-    return render_template('index.html', flowers=flowers, addons=addons, cart=cart, selected_addons=selected_addons, total=total)
+
 
 
 def calculate_total(cart, selected_addons):
     total = sum(item['price'] * item['quantity'] for item in cart.values())
-    total += sum(price for price in selected_addons())
+    total = total + sum(selected_addons())
     return total
 
 @app.route('/about')
