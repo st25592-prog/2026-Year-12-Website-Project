@@ -1,0 +1,24 @@
+{
+    "Meat Lover": {
+        "price": 10
+    },
+    "Margherita": {
+        "price": 12
+    },
+    "Lily": {
+        "price": 10,
+        "stock": 30
+    },
+    "Daisy": {
+        "price": 10,
+        "stock": 100
+    },
+    "Orchid": {
+        "price": 10,
+        "stock": 20
+    },
+    "Peonies": {
+        "price": 10,
+        "stock": 25
+    }
+}
