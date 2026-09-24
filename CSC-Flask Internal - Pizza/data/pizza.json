@@ -5,20 +5,34 @@
     "Margherita": {
         "price": 12
     },
-    "Lily": {
-        "price": 10,
-        "stock": 30
+    "Hawaiian Style": {
+        "price": 16
     },
-    "Daisy": {
-        "price": 10,
-        "stock": 100
+    "Marinara": {
+        "price": 11
     },
-    "Orchid": {
-        "price": 10,
-        "stock": 20
+    "Seafood Style": {
+        "price": 13
     },
-    "Peonies": {
-        "price": 10,
-        "stock": 25
+    "Cheesy Garlic": {
+        "price": 17
+    },
+    "Cheesy Pizza": {
+        "price": 15
+    },
+    "Beef & Onion": {
+        "price": 19
+    },
+    "Caramel Glazed": {
+        "price": 18
+    },
+    "Greek-style Pizza": {
+        "price": 20
+    },
+    "Carbonara": {
+        "price": 14
+    },
+    "Fried Pizza": {
+        "price": 9
     }
 }

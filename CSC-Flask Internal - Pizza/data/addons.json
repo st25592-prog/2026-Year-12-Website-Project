@@ -1,0 +1,17 @@
+{
+    "Mozzarella": {
+        "price": 2
+    },
+    "Parmesean": {
+        "price": 5
+    },
+    "Garlic Butter": {
+        "price": 3
+    },
+    "Hot-honey Glaze": {
+        "price": 10
+    },
+    "Extra Toppings": {
+        "price": 8
+    }
+}
