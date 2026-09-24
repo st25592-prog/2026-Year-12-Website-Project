@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Pizzas</title> 
+</head>
+
+<body>
+<h1
+    <h1>Displaying JSON pizza data</h1> 
+
+   <ul>
+    {% for pizza, details in pizzas.items() %}
+        <li>
+            {{ pizza }} - ${{ details['price'] }}  (stock: {{ details['stock'] }})
+        </li>
+    {% endfor %}
+    </ul>
+
+</body>
+</html>
