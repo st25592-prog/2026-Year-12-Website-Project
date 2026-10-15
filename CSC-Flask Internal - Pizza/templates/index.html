@@ -1,22 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dream Pizzas</title> 
-</head>
+{% extends "base.html" %}
+
+</title>{% block title %}Home - Online Flower Shop{% endblock %}</title>
+
+{% block content %}
 
 <body>
 <h1
     <h1>Displaying JSON pizza data</h1> 
 
-   <ul>
+   <div class="pizza-gallery">
     {% for pizza, details in pizzas.items() %}
-        <li>
-            {{ pizza }} - ${{ details['price'] }}  (stock: {{ details['stock'] }})
-        </li>
+        <div class="pizza-item">
+            <h1>{{ pizza }}</h1>
+            <img src="{{ details['image_path'] }}" alt="{{ pizza }}">
+            <p></p>{{ details['description'] }}</p>
+            <p>Price: ${{ details['price'] }} | Stock: {{ details['stock'] }}</p>
+            <button>Add to Cart</button>
+        </div>
     {% endfor %}
-    </ul>
+    </div>
 
 </body>
-</html>
+{% endblock %}

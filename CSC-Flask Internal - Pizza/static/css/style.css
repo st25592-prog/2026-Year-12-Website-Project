@@ -1,0 +1,13 @@
+.pizza-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.pizza-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+.pizza-item img {
+    width: 200px;
+    height: 200px;
+}

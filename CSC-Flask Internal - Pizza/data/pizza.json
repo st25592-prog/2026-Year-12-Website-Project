@@ -1,38 +1,62 @@
 {
-    "Meat Lover": {
-        "price": 10
+    "Meat Lovers": {
+        "price": 9,
+        "stock": 10,
+        "image_path": "/static/images/MeatLover.jpeg"
     },
     "Margherita": {
-        "price": 12
+        "price": 12,
+        "stock": 5,
+        "image_path": "/static/images/Margherita.jpeg"
     },
     "Hawaiian Style": {
-        "price": 16
+        "price": 16,
+        "stock": 8,
+        "image_path": "/static/images/Hawaiian.jpeg"
     },
     "Marinara": {
-        "price": 11
+        "price": 11,
+        "stock": 6,
+        "image_path": "/static/images/Marinara.jpeg"
     },
     "Seafood Style": {
-        "price": 13
+        "price": 13,
+        "stock": 4,
+        "image_path": "/static/images/Seafood.jpeg"
     },
     "Cheesy Garlic": {
-        "price": 17
+        "price": 17,
+        "stock": 7,
+        "image_path": "/static/images/CheesyGarlic.jpeg"
     },
     "Cheesy Pizza": {
-        "price": 15
+        "price": 15,
+        "stock": 9, 
+        "image_path": "/static/images/Cheesy.jpeg"
     },
     "Beef & Onion": {
-        "price": 19
+        "price": 19,
+        "stock": 3,
+        "image_path": "/static/images/BeefnOnion.jpeg"
     },
     "Caramel Glazed": {
-        "price": 18
+        "price": 18,
+        "stock": 2,
+        "image_path": "/static/images/Caramel.jpeg"
     },
     "Greek-style Pizza": {
-        "price": 20
+        "price": 20,
+        "stock": 1,
+        "image_path": "/static/images/Greek.jpeg"
     },
     "Carbonara": {
-        "price": 14
+        "price": 14,
+        "stock": 5,
+        "image_path": "/static/images/Carbonara.jpeg"
     },
     "Fried Pizza": {
-        "price": 9
+        "price": 9,
+        "stock": 6,
+        "image_path": "/static/images/Fried.jpeg"
     }
 }

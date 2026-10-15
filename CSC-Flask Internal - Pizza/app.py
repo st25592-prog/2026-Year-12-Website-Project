@@ -7,8 +7,8 @@ app.secret_key = 'your_secret_key'
 
 @app.route('/')
 def index():
-    pizza = load_data()
-    return render_template('index.html', pizza=pizza)
+    pizzas = load_data()
+    return render_template('index.html', pizzas=pizzas)
 
 def load_data():
         with open('data/pizza.json') as file:
