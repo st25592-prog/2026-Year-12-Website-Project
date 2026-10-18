@@ -7,13 +7,53 @@ app.secret_key = 'your_secret_key'
 
 @app.route('/')
 def index():
-    pizzas = load_data()
-    return render_template('index.html', pizzas=pizzas)
+    cart = session.get('cart', {})
+    selected_addons = session.get('selected_addons', {})
+    pizzas, addons = load_data()
+    total = calculate_total(cart, selected_addons)
+    return render_template('index.html', pizzas=pizzas, addons=addons, cart=cart, selected_addons=selected_addons, total=total)
+
+# Add selected pizza to the shopping cart
+@app.route('/add_to_cart', methods=['POST'])
+def add_to_cart():
+    pizza = request.form['pizza'] #get selcted pizza name
+    quantity = int(request.form['quantity']) #convert quantity to a number
+    pizzas, addons = load_data() #get pizza data from file, ignore addons data for now
+    cart = session.get('cart', {}) #get cart from session or start fresh
+
+    if pizza not in pizzas:
+        flash('Invalid pizza selected.')
+        return redirect(url_for('index.html'))
+    
+    if pizza in cart:
+        cart[pizza]['quantity'] += quantity # add existing quantity
+    else:
+            cart[pizza] = {
+                 'price': pizzas[pizza]['price'],
+                 'quantity': quantity
+            }
+
+    session['cart'] = cart # update session
+    session.modified = True # force flask to save it
+    flash(f'{quantity} {pizza}(s) added to cart.')
+    return redirect(url_for('index', pizzas=pizzas, addons=addons)) # go back to home page
+
+    return render_template('index.html' , pizzas=pizzas, addons=addons, cart=cart)
 
 def load_data():
-        with open('data/pizza.json') as file:
-            data = json.load(file)
-        return data
+    with open('data/pizza.json') as file:
+        pizzas = json.load(file)
+
+        with open('data/addons.json') as file:
+            addons = json.load(file)
+
+    return pizzas, addons
+
+
+def calculate_total(cart, selected_addons):
+    total = sum(item['price'] * item['quantity'] for item in cart.values())
+    total = total + sum(selected_addons.values())
+    return total
 
 @app.route('/about')
 def about():
@@ -23,10 +63,43 @@ def about():
 def checkout():
     return render_template('invoice.html')
 
-@app.route ('/order')
+@app.route('/orders')
 def order_history():
     return render_template('order_history.html')
 
+@app.route("/remove_from_cart/<item>")
+def remove_from_cart(item):
+    cart = session.get('cart', {})
+    
+    if item in cart:
+        del cart[item]
+        session['cart'] = cart
+        session.modified = True
+        flash(f"Removed all {item} from the cart.")
+    else:
+        flash("Item not found in cart.")
+    return redirect(url_for('index'))
+
+    session['cart'] = cart
+    session.modified = True
+    flash(f'Add-on added to cart.')
+    return redirect(url_for('index'))
+
+@app.route ('/selected_addons', methods=['POST'])
+def selected_addons():
+    selected_addons = {}
+    _, addons = load_data()
+
+    selected_keys = request.form.getlist('addons') # get list of selected addons from form
+   
+    for addon in selected_keys:
+        if addon in addons:
+            selected_addons[addon] = float (addons [addon] ['price'])
+
+    session['selected_addons'] = selected_addons
+    print(session)
+    session.modified = True
+    return redirect(url_for('index'))
+
 if __name__ == '__main__':
     app.run(debug=True)
-

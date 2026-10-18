@@ -1,12 +1,10 @@
 {% extends "base.html" %}
 
-</title>{% block title %}Home - Online Flower Shop{% endblock %}</title>
+</title>{% block title %}Home - Online Pizza Shop{% endblock %}</title>
 
 {% block content %}
 
 <body>
-<h1
-    <h1>Displaying JSON pizza data</h1> 
 
    <div class="pizza-gallery">
     {% for pizza, details in pizzas.items() %}
@@ -19,6 +17,75 @@
         </div>
     {% endfor %}
     </div>
+
+    <form action="{{ url_for('add_to_cart') }}" method="post">
+        <fieldset>
+        <legend for="pizzas">Select Pizzas</legend>
+    <select name="pizzas" id="pizzas">
+        {% for pizza, details in pizzas.items() %}
+            <option value="{{ pizza }}">{{ pizza }} - ${{ details['price'] }}</option>
+        {% endfor %}
+    </select>
+    <label for="quantity">Quantity</label>
+    <input type="number" name="quantity" min="1" value="1">
+    <button type="submit">Add to Cart</button>
+        </fieldset>
+    </form>
+    
+    <form action="{{ url_for('add_to_cart') }}" method="post">
+     <fieldset>
+         <button type="submit">Add to Cart</button>
+        </fieldset>
+    </form>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class="flashes">
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+
+<h2>Your Cart</h2>
+{% if cart %}
+    <ul>
+    {% for item, details in cart.items() %}
+        <li>
+        {{ item }}: {{ '%.2f' % details['quantity'] }} x ${{ '%.2f' % details['price'] }} = ${{details['quantity'] * details['price'] }}
+        <a href="{{ url_for('remove_from_cart', item=item) }}">Remove</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+   
+<p>Your cart is empty.</p>
+{% endif %}
+
+{% if selected_addons %}
+    <h3>Add-ons</h3>
+    <ul>
+    {% for addons, price in selected_addons.items() %}
+        <li>{{ addon }} - ${{ "%.2f"|format(price) }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+<h4>Total: ${{ '%.2f' % total }}</h4>
+
+<form action="{{ url_for('select_addon') }}" method="post">
+    <fieldset>
+        <legend for="addon">Select Add-on</legend>
+        {% for addons, data in addons.items() %}
+        <label>
+            <input type="checkbox" name="addons" value="{{ addons }}">
+            {{ addon }} - (${{ data['price'] }})
+        </label><br>
+        {% endfor %}
+        <button type="submit">Add to Cart</button>
+    </fieldset>
+</form>
 
 </body>
 {% endblock %}

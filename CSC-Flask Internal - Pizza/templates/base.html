@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>{% block title %}Dream Pizzas{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body>
-    <header>
-        <h1>Online Flower Shop</h1>
-        <nav>
 
-            
+<body> 
+    <header>
+        <h1>Online Pizza Shop</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('checkout') }}">Checkout</a>
         </nav>
     </header>
+
     <main>
     {% block content %}{% endblock %}
     </main>
+
     <footer>
         <p>&copy; 2026 Online Dream Pizzas</p>
     </footer>
 </body>
+
 </html>
 
            <!-- <a href="{{ url_for('order_history') }}">Order History</a> -->
