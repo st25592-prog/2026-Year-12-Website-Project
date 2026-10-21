@@ -11,14 +11,16 @@ body {
 nav {
     background-color: #d94f70;
     padding: 15px;
+    display: flex;
+    justify-content: space-between;
     text-align: center;
+    font-weight: bold;           
 }
 
 nav a {
     color: white;
     text-decoration: none;
     margin: 0 15px;
-    font-weight: bold;
 }
 
 nav a:hover {

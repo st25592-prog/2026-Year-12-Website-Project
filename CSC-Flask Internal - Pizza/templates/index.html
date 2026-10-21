@@ -6,18 +6,6 @@
 
 <body>
 
-   <div class="pizza-gallery">
-    {% for pizza, details in pizzas.items() %}
-        <div class="pizza-item">
-            <h1>{{ pizza }}</h1>
-            <img src="{{ details['image_path'] }}" alt="{{ pizza }}">
-            <p></p>{{ details['description'] }}</p>
-            <p>Price: ${{ details['price'] }} | Stock: {{ details['stock'] }}</p>
-            <button>Add to Cart</button>
-        </div>
-    {% endfor %}
-    </div>
-
     <form action="{{ url_for('add_to_cart') }}" method="post">
         <fieldset>
         <legend for="pizzas">Select Pizzas</legend>
@@ -31,12 +19,18 @@
     <button type="submit">Add to Cart</button>
         </fieldset>
     </form>
-    
-    <form action="{{ url_for('add_to_cart') }}" method="post">
-     <fieldset>
-         <button type="submit">Add to Cart</button>
-        </fieldset>
-    </form>
+
+   <div class="pizza-gallery">
+    {% for pizza, details in pizzas.items() %}
+        <div class="pizza-item">
+            <h1>{{ pizza }}</h1>
+            <img src="{{ details['image_path'] }}" alt="{{ pizza }}">
+            <p></p>{{ details['description'] }}</p>
+            <p>Price: ${{ details['price'] }} | Stock: {{ details['stock'] }}</p>
+            <button>Add to Cart</button>
+        </div>
+    {% endfor %}
+    </div>
 
 {% with messages = get_flashed_messages() %}
     {% if messages %}
@@ -74,7 +68,7 @@
 
 <h4>Total: ${{ '%.2f' % total }}</h4>
 
-<form action="{{ url_for('select_addon') }}" method="post">
+<form action="{{ url_for('selected_addons') }}" method="post">
     <fieldset>
         <legend for="addon">Select Add-on</legend>
         {% for addons, data in addons.items() %}

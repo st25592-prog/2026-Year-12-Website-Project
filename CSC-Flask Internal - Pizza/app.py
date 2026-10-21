@@ -13,35 +13,35 @@ def index():
     total = calculate_total(cart, selected_addons)
     return render_template('index.html', pizzas=pizzas, addons=addons, cart=cart, selected_addons=selected_addons, total=total)
 
-# Add selected pizza to the shopping cart
+# Add selected pizzas to the shopping cart
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
-    pizza = request.form['pizza'] #get selcted pizza name
+    pizzas = request.form['pizzas'] #get selcted pizzas name
     quantity = int(request.form['quantity']) #convert quantity to a number
-    pizzas, addons = load_data() #get pizza data from file, ignore addons data for now
+    pizzas, addons = load_data() #get pizzas data from file, ignore addons data for now
     cart = session.get('cart', {}) #get cart from session or start fresh
 
-    if pizza not in pizzas:
-        flash('Invalid pizza selected.')
+    if pizzas not in pizzas:
+        flash('Invalid pizzas selected.')
         return redirect(url_for('index.html'))
     
-    if pizza in cart:
-        cart[pizza]['quantity'] += quantity # add existing quantity
+    if pizzas in cart:
+        cart[pizzas]['quantity'] += quantity # add existing quantity
     else:
-            cart[pizza] = {
-                 'price': pizzas[pizza]['price'],
+            cart[pizzas] = {
+                 'price': pizzas[pizzas]['price'],
                  'quantity': quantity
             }
 
     session['cart'] = cart # update session
     session.modified = True # force flask to save it
-    flash(f'{quantity} {pizza}(s) added to cart.')
+    flash(f'{quantity} {pizzas}(s) added to cart.')
     return redirect(url_for('index', pizzas=pizzas, addons=addons)) # go back to home page
 
     return render_template('index.html' , pizzas=pizzas, addons=addons, cart=cart)
 
 def load_data():
-    with open('data/pizza.json') as file:
+    with open('data/pizzas.json') as file:
         pizzas = json.load(file)
 
         with open('data/addons.json') as file:

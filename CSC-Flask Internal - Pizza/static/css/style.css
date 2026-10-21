@@ -3,11 +3,220 @@
     grid-template-columns: 1fr 1fr 1fr;
 }
 .pizza-item {
-    border: 1px solid #ccc;
+    border: 2px solid #e6a23c;
+    border-radius: 15px;
     padding: 10px;
     text-align: center;
 }
 .pizza-item img {
     width: 200px;
     height: 200px;
+    border-radius: 10px;
+}
+
+/* General page styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff5e6;
+    color: #3b2416;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigation bar */
+nav {
+    background-color: #c62828;
+    padding: 18px;
+    justify-content: space-between; 
+    text-align: center;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    font-weight: bold;  
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #ffd54f;
+}
+
+/* Main heading */
+h1 {
+    color: #c62828;
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+h2 {
+    color: #d84315;
+}
+
+/* Main content */
+main {
+    width: 80%;
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: #fffdf8;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(80, 40, 10, 0.08);
+}
+
+/* Forms and order sections */
+fieldset {
+    border: 2px solid #e6a23c;
+    border-radius: 12px;
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+legend {
+    color: #c62828;
+    font-weight: bold;
+    padding: 0 10px;
+}
+
+label {
+    display: inline-block;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+input,
+select {
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #d6c3ad;
+    border-radius: 6px;
+    background-color: #fffdf8;
+    font-size: 14px;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #e65100;
+    box-shadow: 0 0 5px rgba(230, 81, 0, 0.3);
+}
+
+/* Buttons */
+button {
+    background-color: #e53935;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease,
+                transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #a91d1d;
+    transform: translateY(-2px);
+}
+
+/* Pizza menu and cart items */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #ffffff;
+    border: 1px solid #f0d7b5;
+    margin: 12px 0;
+    padding: 18px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(80, 40, 10, 0.06);
+    transition: box-shadow 0.3s ease;
+}
+
+li:hover {
+    box-shadow: 0 4px 12px rgba(80, 40, 10, 0.15);
+}
+
+/* Pizza prices */
+.price {
+    color: #c62828;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Order total */
+.total {
+    color: #c62828;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: right;
+}
+
+/* Flash messages */
+.flash {
+    background-color: #e8f5e9;
+    color: #1b5e20;
+    padding: 15px;
+    border-left: 5px solid #43a047;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+/* Pizza images */
+.pizza-image {
+    width: 100%;
+    max-width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Footer */
+footer {
+    background-color: #3b2416;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+/* Mobile responsive styling */
+@media (max-width: 768px) {
+    nav {
+        padding: 12px;
+    
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 8px;
+    }
+
+    main {
+        width: auto;
+        margin: 15px;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    input,
+    select {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    button {
+        max-width: 100%;
+    }
 }
