@@ -27,7 +27,6 @@ body {
 nav {
     background-color: #c62828;
     padding: 18px;
-    justify-content: space-between; 
     text-align: center;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
     font-weight: bold;  
