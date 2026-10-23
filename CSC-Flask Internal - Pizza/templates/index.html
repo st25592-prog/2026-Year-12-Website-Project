@@ -1,85 +1,130 @@
+
 {% extends "base.html" %}
 
-</title>{% block title %}Home - Online Pizza Shop{% endblock %}</title>
+{% block title %}Home - Online Pizza Shop{% endblock %}
 
 {% block content %}
 
-<body>
+<h1>Our Selections</h1>
 
-    <form action="{{ url_for('add_to_cart') }}" method="post">
-        <fieldset>
-        <legend for="pizzas">Select Pizzas</legend>
-    <select name="pizzas" id="pizzas">
-        {% for pizza, details in pizzas.items() %}
-            <option value="{{ pizza }}">{{ pizza }} - ${{ details['price'] }}</option>
-        {% endfor %}
-    </select>
-    <label for="quantity">Quantity</label>
-    <input type="number" name="quantity" min="1" value="1">
-    <button type="submit">Add to Cart</button>
-        </fieldset>
-    </form>
-
-   <div class="pizza-gallery">
-    {% for pizza, details in pizzas.items() %}
+<div class="pizza-gallery">
+    {% for pizza_name, details in pizzas.items() %}
         <div class="pizza-item">
-            <h1>{{ pizza }}</h1>
-            <img src="{{ details['image_path'] }}" alt="{{ pizza }}">
-            <p></p>{{ details['description'] }}</p>
-            <p>Price: ${{ details['price'] }} | Stock: {{ details['stock'] }}</p>
-            <button>Add to Cart</button>
+            <h2>{{ pizza_name }}</h2>
+
+            <img
+                src="{{ details['image_path'] }}"
+                alt="{{ pizza_name }}"
+                class="pizza-image"
+            >
+
+            {% if details.get('description') %}
+                <p>{{ details['description'] }}</p>
+            {% endif %}
+
+            <p class="price">
+                Price: ${{ "%.2f"|format(details['price']) }}
+            </p>
+
+            <p>Stock: {{ details['stock'] }}</p>
+
+            <form action="{{ url_for('add_to_cart') }}" method="post">
+                <input
+                    type="hidden"
+                    name="pizzas"
+                    value="{{ pizza_name }}"
+                >
+
+                <label for="quantity-{{ loop.index }}">Quantity:</label>
+                <input
+                    type="number"
+                    id="quantity-{{ loop.index }}"
+                    name="quantity"
+                    min="1"
+                    max="{{ details['stock'] }}"
+                    value="1"
+                    required
+                >
+
+                <button type="submit">Add to Cart</button>
+            </form>
         </div>
     {% endfor %}
-    </div>
+</div>
 
 {% with messages = get_flashed_messages() %}
     {% if messages %}
         <ul class="flashes">
-        {% for message in messages %}
-            <li>{{ message }}</li>
-        {% endfor %}
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
         </ul>
     {% endif %}
 {% endwith %}
 
+<hr>
+
 <h2>Your Cart</h2>
+
 {% if cart %}
     <ul>
-    {% for item, details in cart.items() %}
-        <li>
-        {{ item }}: {{ '%.2f' % details['quantity'] }} x ${{ '%.2f' % details['price'] }} = ${{details['quantity'] * details['price'] }}
-        <a href="{{ url_for('remove_from_cart', item=item) }}">Remove</a>
-        </li>
-    {% endfor %}
+        {% for item, details in cart.items() %}
+            <li>
+                <strong>{{ item }}</strong>:
+                {{ details['quantity'] }} x
+                ${{ "%.2f"|format(details['price']) }}
+                =
+                ${{ "%.2f"|format(details['quantity'] * details['price']) }}
+
+                <a href="{{ url_for('remove_from_cart', item=item) }}">
+                    Remove
+                </a>
+            </li>
+        {% endfor %}
     </ul>
 {% else %}
-   
-<p>Your cart is empty.</p>
+    <p>Your cart is empty.</p>
 {% endif %}
 
-{% if selected_addons %}
-    <h3>Add-ons</h3>
-    <ul>
-    {% for addons, price in selected_addons.items() %}
-        <li>{{ addon }} - ${{ "%.2f"|format(price) }}</li>
-    {% endfor %}
-    </ul>
-{% endif %}
-
-<h4>Total: ${{ '%.2f' % total }}</h4>
+<h2>Choose Add-ons</h2>
 
 <form action="{{ url_for('selected_addons') }}" method="post">
     <fieldset>
-        <legend for="addon">Select Add-on</legend>
-        {% for addons, data in addons.items() %}
-        <label>
-            <input type="checkbox" name="addons" value="{{ addons }}">
-            {{ addon }} - (${{ data['price'] }})
-        </label><br>
+        <legend>Select your add-ons</legend>
+
+        {% for addon_name, data in addons.items() %}
+            <label>
+                <input
+                    type="checkbox"
+                    name="addons"
+                    value="{{ addon_name }}"
+                    {% if addon_name in selected_addons %}checked{% endif %}
+                >
+                {{ addon_name }} -
+                ${{ "%.2f"|format(data['price']) }}
+            </label>
+            <br>
         {% endfor %}
-        <button type="submit">Add to Cart</button>
+
+        <button type="submit">Update Add-ons</button>
     </fieldset>
 </form>
 
-</body>
+{% if selected_addons %}
+    <h3>Selected Add-ons</h3>
+    <ul>
+        {% for addon_name, price in selected_addons.items() %}
+            <li>
+                {{ addon_name }} - ${{ "%.2f"|format(price) }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<h2 class="total">Total: ${{ "%.2f"|format(total) }}</h2>
+
+<p>
+    <a href="{{ url_for('checkout') }}">Proceed to Checkout</a>
+</p>
+
 {% endblock %}

@@ -5,6 +5,16 @@ from flask import Flask, render_template, request, session, flash,  redirect, ur
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
+
+def load_data():
+    with open('data/pizzas.json', 'r') as file:
+        pizzas = json.load(file)
+
+    with open('data/addons.json', 'r') as file:
+        addons = json.load(file)
+
+    return pizzas, addons
+
 @app.route('/')
 def index():
     cart = session.get('cart', {})
@@ -13,41 +23,58 @@ def index():
     total = calculate_total(cart, selected_addons)
     return render_template('index.html', pizzas=pizzas, addons=addons, cart=cart, selected_addons=selected_addons, total=total)
 
-# Add selected pizzas to the shopping cart
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
-    pizzas = request.form['pizzas'] #get selcted pizzas name
-    quantity = int(request.form['quantity']) #convert quantity to a number
-    pizzas, addons = load_data() #get pizzas data from file, ignore addons data for now
-    cart = session.get('cart', {}) #get cart from session or start fresh
+    # Get the selected pizza name from the form
+    pizza_name = request.form.get('pizzas')
 
-    if pizzas not in pizzas:
-        flash('Invalid pizzas selected.')
-        return redirect(url_for('index.html'))
-    
-    if pizzas in cart:
-        cart[pizzas]['quantity'] += quantity # add existing quantity
+    # Get the quantity selected
+    try:
+        quantity = int(request.form.get('quantity', 1))
+        if quantity < 1:
+            raise ValueError
+    except (ValueError, TypeError):
+        flash('Please enter a valid quantity.')
+        return redirect(url_for('index'))
+
+    # Load the pizza menu
+    pizzas, addons = load_data()
+
+    # Check that the selected pizza exists
+    if pizza_name not in pizzas:
+        flash('Invalid pizza selected.')
+        return redirect(url_for('index'))
+
+    # Get the cart from the session
+    cart = session.get('cart', {})
+
+    # Get the selected pizza's details
+    pizza_details = pizzas[pizza_name]
+    price = float(pizza_details['price'])
+
+    # Check stock availability
+    current_quantity = cart.get(pizza_name, {}).get('quantity', 0)
+    new_quantity = current_quantity + quantity
+
+    if new_quantity > int(pizza_details['stock']):
+        flash(f"Only {pizza_details['stock']} {pizza_name} pizzas are available.")
+        return redirect(url_for('index'))
+
+    # Add pizza or increase its quantity
+    if pizza_name in cart:
+        cart[pizza_name]['quantity'] = new_quantity
     else:
-            cart[pizzas] = {
-                 'price': pizzas[pizzas]['price'],
-                 'quantity': quantity
-            }
+        cart[pizza_name] = {
+            'price': price,
+            'quantity': quantity
+        }
 
-    session['cart'] = cart # update session
-    session.modified = True # force flask to save it
-    flash(f'{quantity} {pizzas}(s) added to cart.')
-    return redirect(url_for('index', pizzas=pizzas, addons=addons)) # go back to home page
+    # Save the updated cart
+    session['cart'] = cart
+    session.modified = True
 
-    return render_template('index.html' , pizzas=pizzas, addons=addons, cart=cart)
-
-def load_data():
-    with open('data/pizzas.json') as file:
-        pizzas = json.load(file)
-
-        with open('data/addons.json') as file:
-            addons = json.load(file)
-
-    return pizzas, addons
+    flash(f'{quantity} {pizza_name} pizza(s) added to your cart!')
+    return redirect(url_for('index'))
 
 
 def calculate_total(cart, selected_addons):
@@ -59,9 +86,19 @@ def calculate_total(cart, selected_addons):
 def about():
     return render_template('about.html')
 
-@app.route('/checkout')
+@app.route("/checkout")
 def checkout():
-    return render_template('invoice.html')
+    cart = session.get("cart", {})
+    selected_addons = session.get("selected_addons", {})
+
+    total = calculate_total(cart, selected_addons)
+
+    return render_template(
+        "invoice.html",
+        cart=cart,
+        selected_addons=selected_addons,
+        total=total
+    )
 
 @app.route('/orders')
 def order_history():
